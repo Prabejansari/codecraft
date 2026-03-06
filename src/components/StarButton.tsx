@@ -7,8 +7,8 @@ import { Star } from "lucide-react";
 function StarButton({ snippetId }: { snippetId: Id<"snippets"> }) {
   const { isSignedIn } = useAuth();
 
-  const isStarred = useQuery(api.snippets.isSnippetStarred, { snippetId });
-  const starCount = useQuery(api.snippets.getSnippetStarCount, { snippetId });
+  const isStarred = useQuery(api.snippets.isSnippetStarred, { snippetId }) ?? false;
+  const starCount = useQuery(api.snippets.getSnippetStarCount, { snippetId }) ?? 0;
   const star = useMutation(api.snippets.starSnippet);
 
   const handleStar = async () => {
@@ -19,11 +19,10 @@ function StarButton({ snippetId }: { snippetId: Id<"snippets"> }) {
   return (
     <button
       className={`group flex items-center gap-1.5 px-3 py-[5px] rounded-lg 
-    transition-all duration-200 ${
-      isStarred
-        ? "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20"
-        : "bg-gray-500/10 text-gray-400 hover:bg-gray-500/20"
-    }`}
+    transition-all duration-200 ${isStarred
+          ? "bg-yellow-500/10 text-yellow-500 hover:bg-yellow-500/20"
+          : "bg-gray-500/10 text-gray-400 hover:bg-gray-500/20"
+        }`}
       onClick={handleStar}
     >
       <Star

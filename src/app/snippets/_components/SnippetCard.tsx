@@ -109,30 +109,30 @@ function SnippetCard({ snippet }: { snippet: Snippet }) {
             </div>
           </div>
         </Navigate>
-          <div className="absolute top-5 right-16">
-            <StarButton  snippetId={snippet._id} />
-          </div>
-          {/* Delete Button - Positioned Absolutely Outside Navigate */}
-          {user?.id === snippet.userId && (
-            <div className="absolute top-5 right-5 z-20">
-              <button
-                onClick={handleDelete}
-                disabled={isDeleting}
-                className={`group flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200
+        <div className={`absolute top-5 ${user?.id === snippet.userId ? "right-16" : "right-5"}`}>
+          <StarButton snippetId={snippet._id} />
+        </div>
+        {/* Delete Button - Positioned Absolutely Outside Navigate */}
+        {user?.id === snippet.userId && (
+          <div className="absolute top-5 right-5 z-20">
+            <button
+              onClick={handleDelete}
+              disabled={isDeleting}
+              className={`group flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200
                           ${isDeleting
-                    ? "bg-red-500/20 text-red-400 cursor-not-allowed"
-                    : "bg-gray-500/10 text-gray-400 hover:bg-red-500/10 hover:text-red-400"
-                  }
+                  ? "bg-red-500/20 text-red-400 cursor-not-allowed"
+                  : "bg-gray-500/10 text-gray-400 hover:bg-red-500/10 hover:text-red-400"
+                }
                         `}
-              >
-                {isDeleting ? (
-                  <div className="size-3.5 border-2 border-red-400/30 border-t-red-400 rounded-full animate-spin" />
-                ) : (
-                  <Trash2 className="size-3.5" />
-                )}
-              </button>
-            </div>
-          )}
+            >
+              {isDeleting ? (
+                <div className="size-3.5 border-2 border-red-400/30 border-t-red-400 rounded-full animate-spin" />
+              ) : (
+                <Trash2 className="size-3.5" />
+              )}
+            </button>
+          </div>
+        )}
       </div>
     </motion.div>
   );

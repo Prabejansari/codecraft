@@ -1,7 +1,7 @@
 "use client";
 // import LoginButton from "@/components/LoginButton";
 import { SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { User } from "lucide-react";
+import { CardSimIcon, Home, User } from "lucide-react";
 import useMounted from "@/app/hooks/useMounted";
 import Navigate from "@/components/Navigate";
 
@@ -17,16 +17,32 @@ function HeaderProfileBtn() {
     return (
         <>
             <UserButton>
-    <UserButton.MenuItems>
-        <UserButton.Link
-            label="Profile"
-            labelIcon={<User className="size-4" />}
-            href="/profile"
-        >
-            <Navigate href="/profile" />
-        </UserButton.Link>
-    </UserButton.MenuItems>
-</UserButton>
+                <UserButton.MenuItems>
+                    <UserButton.Link
+                        label="Code Editor"
+                        labelIcon={<Home className="size-4" />}
+                        href="/"
+                    >
+                        <Navigate href="/" />
+                    </UserButton.Link>
+                    <UserButton.Link
+                        label="Snippets"
+                        labelIcon={<CardSimIcon className="size-4" />}
+                        href="/snippets"
+                    >
+                        <Navigate href="/profile" />
+                    </UserButton.Link>
+                    <UserButton.Link
+                        label="Profile"
+                        labelIcon={<User className="size-4" />}
+                        href="/profile"
+                    >
+                        <Navigate href="/profile" />
+                    </UserButton.Link>
+                    {/* Manage account BELOW profile */}
+                    <UserButton.Action label="manageAccount" />
+                </UserButton.MenuItems>
+            </UserButton>
             <SignedOut>
                 {/* <LoginButton /> */}
                 <SignInButton />
