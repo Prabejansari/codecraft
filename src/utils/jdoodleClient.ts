@@ -3,12 +3,10 @@ const exhaustedKeys = new Set<number>();
 const keys = JSON.parse(process.env.JDOODLE_KEYS || "[]");
 
 export async function executeWithRotation(payload: object) {
-    console.log(keys.length)
 
     for (let i = 0; i < keys.length; i++) {
 
         if (exhaustedKeys.has(i)) {
-            console.log("API key exhausted!")
             continue;
         }
 
@@ -27,13 +25,12 @@ export async function executeWithRotation(payload: object) {
         });
 
         const data = await res.json();
+        console.log("Secret - ", i);
 
         if (data?.error?.includes("limit")) {
             exhaustedKeys.add(i);
-            console.log("API key exhausteds!")
             continue;
         }
-        console.log(key)
 
         return data;
     }

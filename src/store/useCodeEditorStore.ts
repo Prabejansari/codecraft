@@ -97,7 +97,6 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
 
         const data = await response.json();
 
-        console.log("data back from JDoodle via backend:", data);
 
         // Handle API errors
         if (!data.isExecutionSuccess) {
@@ -118,8 +117,7 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
           executionResult: { code, output: output.trim(), error: null },
           isRunning: false
         });
-      } catch (error) {
-        console.log("Error running code:", error);
+      } catch {
         set({
           error: "Error running code",
           executionResult: { code, output: "", error: "Error running code" },

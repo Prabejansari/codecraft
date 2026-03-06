@@ -39,8 +39,7 @@ http.route({
       }
 
       return new Response("Webhook processed successfully", { status: 200 });
-    } catch (error) {
-      console.log("Webhook error:", error);
+    } catch{
       return new Response("Error processing webhook", { status: 500 });
     }
   }),
@@ -96,8 +95,7 @@ http.route({
           email,
           name,
         });
-      } catch (error) {
-        console.log("Error creating user:", error);
+      } catch {
         return new Response("Error creating user", { status: 500 });
       }
     }
