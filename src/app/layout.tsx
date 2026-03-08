@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
 import TopLoader from "@/components/TopLoader";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
+        <head>
+          <Script
+            src="https://pl28876121.effectivegatecpm.com/4f/99/52/4f995267e1c6a1a6840e190ba5638af2.js"
+            strategy="beforeInteractive"
+          />
+        </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-linear-to-b from-gray-900 to-gray-950 text-gray-100 flex flex-col`}
         >
